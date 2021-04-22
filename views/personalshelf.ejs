@@ -16,6 +16,11 @@
     </ul>
     <div class="card-body">
       <a href="/reviews/:<%=booksinshelf[i].ISBN%>" class="btn btn-primary">Check reviews </a>
+      <a href="/ratings/:<%=booksinshelf[i].ISBN%>" class="btn btn-primary">Rate this book: </a>
+      <form method="post" action="/ratings/:<%=booksinshelf[i].ISBN%>">
+        <input type="text" name="rating" placeholder="enter rating">
+        <button type="submit" name="button">Rate</button>
+      </form>
     </div>
   </div>
 </div>

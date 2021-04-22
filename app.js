@@ -10,7 +10,7 @@ const mysql = require("mysql2");
 const database = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "yobahubaliyo",
   database: "lms",
 });
 
@@ -369,6 +369,22 @@ app.get("/reviews/:isbn", function(req, res) {
       reviewsArrNames: reviewsArrNames,
       reviewsArrReviews: reviewsArrReviews
     });
+  })
+})
+
+
+app.post("/ratings/:isbn", function(req, res) {
+  var temp = `${req.params.isbn}`;
+  var isbnis = temp.substr(1);
+  var r = req.body.rating;
+  var sql = `delete from ratings where user_id = "${current_user.id}" and ISBN = "${isbnis}";`;
+  database.query(sql, function(err, result) {
+    if (err) throw err;
+    var sql2 = `insert into ratings values ("${current_user.id}", "${isbnis}", "${r}");`;
+    database.query(sql2, function(err2, result2) {
+      if(err2) throw err2;
+      res.redirect("/personalshelf");
+    })
   })
 })
 
