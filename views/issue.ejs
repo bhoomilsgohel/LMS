@@ -1,0 +1,26 @@
+<% if(criteria === 0) { %>
+<%- include("partials/header"); -%>
+<% } else { %>
+<%- include("partials/headerLoggedin"); -%>
+<% } %>
+
+<%if(criteria == 0) {%>
+  <div class="alert alert-secondary" role="alert">
+    You need to log in to proceed!
+  </div>
+<%} else if(criteria == 1) {%>
+  <div class="alert alert-success" role="alert">
+    You have successfully issued the book! Collect the book from the library:)
+  </div>
+<%} else if(criteria == 2) {%>
+  <div class="alert alert-danger" role="alert">
+    Sorry, no copies available at the moment. You have been added to the on hold list instead.
+  </div>
+<%} else {%>
+  <div class="alert alert-danger" role="alert">
+    You either have too many books already issued, or you have unpaid fines. Cant issue://
+  </div>
+<%}%>
+
+
+<%- include("partials/footer"); -%>
